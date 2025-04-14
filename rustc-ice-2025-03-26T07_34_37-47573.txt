@@ -1,0 +1,360 @@
+delayed bug: TyKind::Error constructed but no error reported
+   0: <rustc_errors::DiagCtxtInner>::emit_diagnostic
+   1: <rustc_errors::DiagCtxtHandle>::emit_diagnostic
+   2: <rustc_span::ErrorGuaranteed as rustc_errors::diagnostic::EmissionGuarantee>::emit_producing_guarantee
+   3: <rustc_errors::DiagCtxtHandle>::span_delayed_bug::<rustc_span::span_encoding::Span, &str>
+   4: <rustc_middle::ty::Ty>::new_misc_error
+   5: rustc_trait_selection::traits::project::opt_normalize_projection_term
+   6: <rustc_trait_selection::traits::normalize::AssocTypeNormalizer as rustc_type_ir::fold::TypeFolder<rustc_middle::ty::context::TyCtxt>>::fold_ty
+   7: <rustc_hir_analysis::check::wfcheck::WfCheckingCtxt>::normalize::<rustc_middle::ty::Ty>
+   8: rustc_hir_analysis::check::wfcheck::check_item_type
+   9: rustc_hir_analysis::check::wfcheck::check_well_formed
+  10: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::check_well_formed::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 1]>>
+  11: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_data_structures::vec_cache::VecCache<rustc_span::def_id::LocalDefId, rustc_middle::query::erase::Erased<[u8; 1]>, rustc_query_system::dep_graph::graph::DepNodeIndex>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  12: rustc_query_impl::query_impl::check_well_formed::get_query_incr::__rust_end_short_backtrace
+  13: rustc_hir_analysis::check::wfcheck::check_mod_type_wf
+  14: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::check_mod_type_wf::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 1]>>
+  15: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_span::def_id::LocalModDefId, rustc_middle::query::erase::Erased<[u8; 1]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  16: rustc_query_impl::query_impl::check_mod_type_wf::get_query_incr::__rust_end_short_backtrace
+  17: rustc_hir_analysis::check_crate
+  18: rustc_interface::passes::run_required_analyses
+  19: rustc_interface::passes::analysis
+  20: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::analysis::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 0]>>
+  21: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::SingleCache<rustc_middle::query::erase::Erased<[u8; 0]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  22: rustc_query_impl::query_impl::analysis::get_query_incr::__rust_end_short_backtrace
+  23: rustc_interface::passes::create_and_enter_global_ctxt::<core::option::Option<rustc_interface::queries::Linker>, rustc_driver_impl::run_compiler::{closure#0}::{closure#2}>::{closure#2}::{closure#0}
+  24: rustc_interface::interface::run_compiler::<(), rustc_driver_impl::run_compiler::{closure#0}>::{closure#1}
+  25: std::sys::backtrace::__rust_begin_short_backtrace::<rustc_interface::util::run_in_thread_with_globals<rustc_interface::util::run_in_thread_pool_with_globals<rustc_interface::interface::run_compiler<(), rustc_driver_impl::run_compiler::{closure#0}>::{closure#1}, ()>::{closure#0}, ()>::{closure#0}::{closure#0}, ()>
+  26: <<std::thread::Builder>::spawn_unchecked_<rustc_interface::util::run_in_thread_with_globals<rustc_interface::util::run_in_thread_pool_with_globals<rustc_interface::interface::run_compiler<(), rustc_driver_impl::run_compiler::{closure#0}>::{closure#1}, ()>::{closure#0}, ()>::{closure#0}::{closure#0}, ()>::{closure#1} as core::ops::function::FnOnce<()>>::call_once::{shim:vtable#0}
+  27: std::sys::pal::unix::thread::Thread::new::thread_start
+  28: start_thread
+             at ./nptl/pthread_create.c:442:8
+  29: __GI___clone3
+             at ./misc/../sysdeps/unix/sysv/linux/x86_64/clone3.S:81:0
+
+delayed bug: TyKind::Error constructed but no error reported
+   0: <rustc_errors::DiagCtxtInner>::emit_diagnostic
+   1: <rustc_errors::DiagCtxtHandle>::emit_diagnostic
+   2: <rustc_span::ErrorGuaranteed as rustc_errors::diagnostic::EmissionGuarantee>::emit_producing_guarantee
+   3: <rustc_errors::DiagCtxtHandle>::span_delayed_bug::<rustc_span::span_encoding::Span, &str>
+   4: <rustc_middle::ty::Ty>::new_misc_error
+   5: rustc_trait_selection::traits::project::opt_normalize_projection_term
+   6: <rustc_trait_selection::traits::normalize::AssocTypeNormalizer as rustc_type_ir::fold::TypeFolder<rustc_middle::ty::context::TyCtxt>>::fold_ty
+   7: <rustc_hir_typeck::fn_ctxt::FnCtxt>::normalize::<rustc_middle::ty::Ty>
+   8: rustc_hir_typeck::typeck_with_inspect::{closure#0}
+   9: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::typeck::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 8]>>
+  10: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_data_structures::vec_cache::VecCache<rustc_span::def_id::LocalDefId, rustc_middle::query::erase::Erased<[u8; 8]>, rustc_query_system::dep_graph::graph::DepNodeIndex>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  11: rustc_query_impl::query_impl::typeck::get_query_incr::__rust_end_short_backtrace
+  12: rustc_mir_build::thir::pattern::check_match::check_match
+  13: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::check_match::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 1]>>
+  14: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_data_structures::vec_cache::VecCache<rustc_span::def_id::LocalDefId, rustc_middle::query::erase::Erased<[u8; 1]>, rustc_query_system::dep_graph::graph::DepNodeIndex>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  15: rustc_query_impl::query_impl::check_match::get_query_incr::__rust_end_short_backtrace
+  16: rustc_mir_build::builder::build_mir
+  17: rustc_mir_transform::mir_built
+  18: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::mir_built::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 8]>>
+  19: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_data_structures::vec_cache::VecCache<rustc_span::def_id::LocalDefId, rustc_middle::query::erase::Erased<[u8; 8]>, rustc_query_system::dep_graph::graph::DepNodeIndex>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  20: rustc_query_impl::query_impl::mir_built::get_query_incr::__rust_end_short_backtrace
+  21: rustc_mir_transform::mir_const_qualif
+  22: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::mir_const_qualif::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 4]>>
+  23: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefIdCache<rustc_middle::query::erase::Erased<[u8; 4]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  24: rustc_query_impl::query_impl::mir_const_qualif::get_query_incr::__rust_end_short_backtrace
+  25: rustc_mir_transform::mir_promoted
+  26: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::mir_promoted::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 16]>>
+  27: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_data_structures::vec_cache::VecCache<rustc_span::def_id::LocalDefId, rustc_middle::query::erase::Erased<[u8; 16]>, rustc_query_system::dep_graph::graph::DepNodeIndex>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  28: rustc_query_impl::query_impl::mir_promoted::get_query_incr::__rust_end_short_backtrace
+  29: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::mir_borrowck::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 8]>>
+  30: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_data_structures::vec_cache::VecCache<rustc_span::def_id::LocalDefId, rustc_middle::query::erase::Erased<[u8; 8]>, rustc_query_system::dep_graph::graph::DepNodeIndex>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  31: rustc_query_impl::query_impl::mir_borrowck::get_query_incr::__rust_end_short_backtrace
+  32: rustc_mir_transform::mir_drops_elaborated_and_const_checked
+  33: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::mir_drops_elaborated_and_const_checked::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 8]>>
+  34: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_data_structures::vec_cache::VecCache<rustc_span::def_id::LocalDefId, rustc_middle::query::erase::Erased<[u8; 8]>, rustc_query_system::dep_graph::graph::DepNodeIndex>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  35: rustc_query_impl::query_impl::mir_drops_elaborated_and_const_checked::get_query_incr::__rust_end_short_backtrace
+  36: rustc_mir_transform::mir_for_ctfe
+  37: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::mir_for_ctfe::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 8]>>
+  38: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefIdCache<rustc_middle::query::erase::Erased<[u8; 8]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  39: rustc_query_impl::query_impl::mir_for_ctfe::get_query_incr::__rust_end_short_backtrace
+  40: <rustc_const_eval::interpret::eval_context::InterpCx<rustc_const_eval::const_eval::machine::CompileTimeMachine>>::load_mir
+  41: rustc_const_eval::const_eval::eval_queries::eval_to_allocation_raw_provider
+  42: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::eval_to_allocation_raw::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 24]>>
+  43: <rustc_query_impl::query_impl::eval_to_allocation_raw::dynamic_query::{closure#2} as core::ops::function::FnOnce<(rustc_middle::ty::context::TyCtxt, rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>)>>::call_once
+  44: <rustc_query_system::query::plumbing::execute_job_incr<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>, rustc_middle::query::erase::Erased<[u8; 24]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt>::{closure#2}::{closure#2} as core::ops::function::FnOnce<((rustc_query_impl::plumbing::QueryCtxt, rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>, rustc_middle::query::erase::Erased<[u8; 24]>>, false, false, false>), rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>)>>::call_once
+  45: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>, rustc_middle::query::erase::Erased<[u8; 24]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  46: rustc_query_impl::query_impl::eval_to_allocation_raw::get_query_incr::__rust_end_short_backtrace
+  47: rustc_const_eval::const_eval::eval_queries::eval_to_const_value_raw_provider
+  48: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::eval_to_const_value_raw::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 24]>>
+  49: <rustc_query_impl::query_impl::eval_to_const_value_raw::dynamic_query::{closure#2} as core::ops::function::FnOnce<(rustc_middle::ty::context::TyCtxt, rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>)>>::call_once
+  50: <rustc_query_system::query::plumbing::execute_job_incr<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>, rustc_middle::query::erase::Erased<[u8; 24]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt>::{closure#2}::{closure#2} as core::ops::function::FnOnce<((rustc_query_impl::plumbing::QueryCtxt, rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>, rustc_middle::query::erase::Erased<[u8; 24]>>, false, false, false>), rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>)>>::call_once
+  51: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>, rustc_middle::query::erase::Erased<[u8; 24]>>, false, true, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  52: rustc_query_impl::query_impl::eval_to_const_value_raw::get_query_incr::__rust_end_short_backtrace
+  53: rustc_hir_analysis::check_crate
+  54: rustc_interface::passes::run_required_analyses
+  55: rustc_interface::passes::analysis
+  56: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::analysis::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 0]>>
+  57: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::SingleCache<rustc_middle::query::erase::Erased<[u8; 0]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  58: rustc_query_impl::query_impl::analysis::get_query_incr::__rust_end_short_backtrace
+  59: rustc_interface::passes::create_and_enter_global_ctxt::<core::option::Option<rustc_interface::queries::Linker>, rustc_driver_impl::run_compiler::{closure#0}::{closure#2}>::{closure#2}::{closure#0}
+  60: rustc_interface::interface::run_compiler::<(), rustc_driver_impl::run_compiler::{closure#0}>::{closure#1}
+  61: std::sys::backtrace::__rust_begin_short_backtrace::<rustc_interface::util::run_in_thread_with_globals<rustc_interface::util::run_in_thread_pool_with_globals<rustc_interface::interface::run_compiler<(), rustc_driver_impl::run_compiler::{closure#0}>::{closure#1}, ()>::{closure#0}, ()>::{closure#0}::{closure#0}, ()>
+  62: <<std::thread::Builder>::spawn_unchecked_<rustc_interface::util::run_in_thread_with_globals<rustc_interface::util::run_in_thread_pool_with_globals<rustc_interface::interface::run_compiler<(), rustc_driver_impl::run_compiler::{closure#0}>::{closure#1}, ()>::{closure#0}, ()>::{closure#0}::{closure#0}, ()>::{closure#1} as core::ops::function::FnOnce<()>>::call_once::{shim:vtable#0}
+  63: std::sys::pal::unix::thread::Thread::new::thread_start
+  64: start_thread
+             at ./nptl/pthread_create.c:442:8
+  65: __GI___clone3
+             at ./misc/../sysdeps/unix/sysv/linux/x86_64/clone3.S:81:0
+
+delayed bug: TyKind::Error constructed but no error reported
+   0: <rustc_errors::DiagCtxtInner>::emit_diagnostic
+   1: <rustc_errors::DiagCtxtHandle>::emit_diagnostic
+   2: <rustc_span::ErrorGuaranteed as rustc_errors::diagnostic::EmissionGuarantee>::emit_producing_guarantee
+   3: <rustc_errors::DiagCtxtHandle>::span_delayed_bug::<rustc_span::span_encoding::Span, &str>
+   4: <rustc_middle::ty::Ty>::new_misc_error
+   5: rustc_trait_selection::traits::project::opt_normalize_projection_term
+   6: <rustc_trait_selection::traits::normalize::AssocTypeNormalizer as rustc_type_ir::fold::TypeFolder<rustc_middle::ty::context::TyCtxt>>::fold_ty
+   7: rustc_trait_selection::traits::normalize::normalize_with_depth_to::<rustc_middle::ty::predicate::Predicate>
+   8: <rustc_trait_selection::traits::fulfill::FulfillProcessor as rustc_data_structures::obligation_forest::ObligationProcessor>::process_obligation
+   9: <rustc_data_structures::obligation_forest::ObligationForest<rustc_trait_selection::traits::fulfill::PendingPredicateObligation>>::process_obligations::<rustc_trait_selection::traits::fulfill::FulfillProcessor>
+  10: <rustc_trait_selection::traits::fulfill::FulfillmentContext<rustc_infer::traits::engine::ScrubbedTraitError> as rustc_infer::traits::engine::TraitEngine<rustc_infer::traits::engine::ScrubbedTraitError>>::select_all_or_error
+  11: <rustc_const_eval::check_consts::qualifs::HasMutInterior as rustc_const_eval::check_consts::qualifs::Qualif>::in_any_value_of_ty
+  12: rustc_const_eval::check_consts::qualifs::in_any_value_of_ty
+  13: rustc_mir_transform::mir_const_qualif
+  14: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::mir_const_qualif::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 4]>>
+  15: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefIdCache<rustc_middle::query::erase::Erased<[u8; 4]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  16: rustc_query_impl::query_impl::mir_const_qualif::get_query_incr::__rust_end_short_backtrace
+  17: rustc_mir_transform::mir_promoted
+  18: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::mir_promoted::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 16]>>
+  19: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_data_structures::vec_cache::VecCache<rustc_span::def_id::LocalDefId, rustc_middle::query::erase::Erased<[u8; 16]>, rustc_query_system::dep_graph::graph::DepNodeIndex>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  20: rustc_query_impl::query_impl::mir_promoted::get_query_incr::__rust_end_short_backtrace
+  21: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::mir_borrowck::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 8]>>
+  22: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_data_structures::vec_cache::VecCache<rustc_span::def_id::LocalDefId, rustc_middle::query::erase::Erased<[u8; 8]>, rustc_query_system::dep_graph::graph::DepNodeIndex>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  23: rustc_query_impl::query_impl::mir_borrowck::get_query_incr::__rust_end_short_backtrace
+  24: rustc_mir_transform::mir_drops_elaborated_and_const_checked
+  25: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::mir_drops_elaborated_and_const_checked::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 8]>>
+  26: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_data_structures::vec_cache::VecCache<rustc_span::def_id::LocalDefId, rustc_middle::query::erase::Erased<[u8; 8]>, rustc_query_system::dep_graph::graph::DepNodeIndex>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  27: rustc_query_impl::query_impl::mir_drops_elaborated_and_const_checked::get_query_incr::__rust_end_short_backtrace
+  28: rustc_mir_transform::mir_for_ctfe
+  29: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::mir_for_ctfe::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 8]>>
+  30: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefIdCache<rustc_middle::query::erase::Erased<[u8; 8]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  31: rustc_query_impl::query_impl::mir_for_ctfe::get_query_incr::__rust_end_short_backtrace
+  32: <rustc_const_eval::interpret::eval_context::InterpCx<rustc_const_eval::const_eval::machine::CompileTimeMachine>>::load_mir
+  33: rustc_const_eval::const_eval::eval_queries::eval_to_allocation_raw_provider
+  34: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::eval_to_allocation_raw::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 24]>>
+  35: <rustc_query_impl::query_impl::eval_to_allocation_raw::dynamic_query::{closure#2} as core::ops::function::FnOnce<(rustc_middle::ty::context::TyCtxt, rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>)>>::call_once
+  36: <rustc_query_system::query::plumbing::execute_job_incr<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>, rustc_middle::query::erase::Erased<[u8; 24]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt>::{closure#2}::{closure#2} as core::ops::function::FnOnce<((rustc_query_impl::plumbing::QueryCtxt, rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>, rustc_middle::query::erase::Erased<[u8; 24]>>, false, false, false>), rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>)>>::call_once
+  37: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>, rustc_middle::query::erase::Erased<[u8; 24]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  38: rustc_query_impl::query_impl::eval_to_allocation_raw::get_query_incr::__rust_end_short_backtrace
+  39: rustc_const_eval::const_eval::eval_queries::eval_to_const_value_raw_provider
+  40: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::eval_to_const_value_raw::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 24]>>
+  41: <rustc_query_impl::query_impl::eval_to_const_value_raw::dynamic_query::{closure#2} as core::ops::function::FnOnce<(rustc_middle::ty::context::TyCtxt, rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>)>>::call_once
+  42: <rustc_query_system::query::plumbing::execute_job_incr<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>, rustc_middle::query::erase::Erased<[u8; 24]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt>::{closure#2}::{closure#2} as core::ops::function::FnOnce<((rustc_query_impl::plumbing::QueryCtxt, rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>, rustc_middle::query::erase::Erased<[u8; 24]>>, false, false, false>), rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>)>>::call_once
+  43: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>, rustc_middle::query::erase::Erased<[u8; 24]>>, false, true, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  44: rustc_query_impl::query_impl::eval_to_const_value_raw::get_query_incr::__rust_end_short_backtrace
+  45: rustc_hir_analysis::check_crate
+  46: rustc_interface::passes::run_required_analyses
+  47: rustc_interface::passes::analysis
+  48: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::analysis::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 0]>>
+  49: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::SingleCache<rustc_middle::query::erase::Erased<[u8; 0]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  50: rustc_query_impl::query_impl::analysis::get_query_incr::__rust_end_short_backtrace
+  51: rustc_interface::passes::create_and_enter_global_ctxt::<core::option::Option<rustc_interface::queries::Linker>, rustc_driver_impl::run_compiler::{closure#0}::{closure#2}>::{closure#2}::{closure#0}
+  52: rustc_interface::interface::run_compiler::<(), rustc_driver_impl::run_compiler::{closure#0}>::{closure#1}
+  53: std::sys::backtrace::__rust_begin_short_backtrace::<rustc_interface::util::run_in_thread_with_globals<rustc_interface::util::run_in_thread_pool_with_globals<rustc_interface::interface::run_compiler<(), rustc_driver_impl::run_compiler::{closure#0}>::{closure#1}, ()>::{closure#0}, ()>::{closure#0}::{closure#0}, ()>
+  54: <<std::thread::Builder>::spawn_unchecked_<rustc_interface::util::run_in_thread_with_globals<rustc_interface::util::run_in_thread_pool_with_globals<rustc_interface::interface::run_compiler<(), rustc_driver_impl::run_compiler::{closure#0}>::{closure#1}, ()>::{closure#0}, ()>::{closure#0}::{closure#0}, ()>::{closure#1} as core::ops::function::FnOnce<()>>::call_once::{shim:vtable#0}
+  55: std::sys::pal::unix::thread::Thread::new::thread_start
+  56: start_thread
+             at ./nptl/pthread_create.c:442:8
+  57: __GI___clone3
+             at ./misc/../sysdeps/unix/sysv/linux/x86_64/clone3.S:81:0
+
+delayed bug: TyKind::Error constructed but no error reported
+   0: <rustc_errors::DiagCtxtInner>::emit_diagnostic
+   1: <rustc_errors::DiagCtxtHandle>::emit_diagnostic
+   2: <rustc_span::ErrorGuaranteed as rustc_errors::diagnostic::EmissionGuarantee>::emit_producing_guarantee
+   3: <rustc_errors::DiagCtxtHandle>::span_delayed_bug::<rustc_span::span_encoding::Span, &str>
+   4: <rustc_middle::ty::Ty>::new_misc_error
+   5: rustc_trait_selection::traits::project::opt_normalize_projection_term
+   6: rustc_traits::normalize_projection_ty::normalize_canonicalized_projection_ty
+   7: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::normalize_canonicalized_projection_ty::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 8]>>
+   8: <rustc_query_impl::query_impl::normalize_canonicalized_projection_ty::dynamic_query::{closure#2} as core::ops::function::FnOnce<(rustc_middle::ty::context::TyCtxt, rustc_type_ir::canonical::CanonicalQueryInput<rustc_middle::ty::context::TyCtxt, rustc_middle::ty::ParamEnvAnd<rustc_type_ir::ty_kind::AliasTy<rustc_middle::ty::context::TyCtxt>>>)>>::call_once
+   9: <rustc_query_system::query::plumbing::execute_job_incr<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_type_ir::canonical::CanonicalQueryInput<rustc_middle::ty::context::TyCtxt, rustc_middle::ty::ParamEnvAnd<rustc_type_ir::ty_kind::AliasTy<rustc_middle::ty::context::TyCtxt>>>, rustc_middle::query::erase::Erased<[u8; 8]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt>::{closure#2}::{closure#2} as core::ops::function::FnOnce<((rustc_query_impl::plumbing::QueryCtxt, rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_type_ir::canonical::CanonicalQueryInput<rustc_middle::ty::context::TyCtxt, rustc_middle::ty::ParamEnvAnd<rustc_type_ir::ty_kind::AliasTy<rustc_middle::ty::context::TyCtxt>>>, rustc_middle::query::erase::Erased<[u8; 8]>>, false, false, false>), rustc_type_ir::canonical::CanonicalQueryInput<rustc_middle::ty::context::TyCtxt, rustc_middle::ty::ParamEnvAnd<rustc_type_ir::ty_kind::AliasTy<rustc_middle::ty::context::TyCtxt>>>)>>::call_once
+  10: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_type_ir::canonical::CanonicalQueryInput<rustc_middle::ty::context::TyCtxt, rustc_middle::ty::ParamEnvAnd<rustc_type_ir::ty_kind::AliasTy<rustc_middle::ty::context::TyCtxt>>>, rustc_middle::query::erase::Erased<[u8; 8]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  11: rustc_query_impl::query_impl::normalize_canonicalized_projection_ty::get_query_incr::__rust_end_short_backtrace
+  12: <rustc_trait_selection::traits::query::normalize::QueryNormalizer as rustc_type_ir::fold::FallibleTypeFolder<rustc_middle::ty::context::TyCtxt>>::try_fold_ty
+  13: <rustc_traits::normalize_erasing_regions::provide::{closure#0} as core::ops::function::FnOnce<(rustc_middle::ty::context::TyCtxt, rustc_middle::ty::PseudoCanonicalInput<rustc_middle::ty::generic_args::GenericArg>)>>::call_once
+  14: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::try_normalize_generic_arg_after_erasing_regions::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 8]>>
+  15: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_middle::ty::PseudoCanonicalInput<rustc_middle::ty::generic_args::GenericArg>, rustc_middle::query::erase::Erased<[u8; 8]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  16: rustc_query_impl::query_impl::try_normalize_generic_arg_after_erasing_regions::get_query_incr::__rust_end_short_backtrace
+  17: <rustc_middle::ty::normalize_erasing_regions::TryNormalizeAfterErasingRegionsFolder as rustc_type_ir::fold::FallibleTypeFolder<rustc_middle::ty::context::TyCtxt>>::try_fold_ty
+  18: <rustc_middle::ty::Ty>::needs_drop
+  19: rustc_const_eval::check_consts::qualifs::in_any_value_of_ty
+  20: rustc_mir_transform::mir_const_qualif
+  21: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::mir_const_qualif::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 4]>>
+  22: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefIdCache<rustc_middle::query::erase::Erased<[u8; 4]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  23: rustc_query_impl::query_impl::mir_const_qualif::get_query_incr::__rust_end_short_backtrace
+  24: rustc_mir_transform::mir_promoted
+  25: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::mir_promoted::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 16]>>
+  26: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_data_structures::vec_cache::VecCache<rustc_span::def_id::LocalDefId, rustc_middle::query::erase::Erased<[u8; 16]>, rustc_query_system::dep_graph::graph::DepNodeIndex>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  27: rustc_query_impl::query_impl::mir_promoted::get_query_incr::__rust_end_short_backtrace
+  28: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::mir_borrowck::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 8]>>
+  29: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_data_structures::vec_cache::VecCache<rustc_span::def_id::LocalDefId, rustc_middle::query::erase::Erased<[u8; 8]>, rustc_query_system::dep_graph::graph::DepNodeIndex>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  30: rustc_query_impl::query_impl::mir_borrowck::get_query_incr::__rust_end_short_backtrace
+  31: rustc_mir_transform::mir_drops_elaborated_and_const_checked
+  32: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::mir_drops_elaborated_and_const_checked::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 8]>>
+  33: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_data_structures::vec_cache::VecCache<rustc_span::def_id::LocalDefId, rustc_middle::query::erase::Erased<[u8; 8]>, rustc_query_system::dep_graph::graph::DepNodeIndex>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  34: rustc_query_impl::query_impl::mir_drops_elaborated_and_const_checked::get_query_incr::__rust_end_short_backtrace
+  35: rustc_mir_transform::mir_for_ctfe
+  36: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::mir_for_ctfe::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 8]>>
+  37: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefIdCache<rustc_middle::query::erase::Erased<[u8; 8]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  38: rustc_query_impl::query_impl::mir_for_ctfe::get_query_incr::__rust_end_short_backtrace
+  39: <rustc_const_eval::interpret::eval_context::InterpCx<rustc_const_eval::const_eval::machine::CompileTimeMachine>>::load_mir
+  40: rustc_const_eval::const_eval::eval_queries::eval_to_allocation_raw_provider
+  41: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::eval_to_allocation_raw::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 24]>>
+  42: <rustc_query_impl::query_impl::eval_to_allocation_raw::dynamic_query::{closure#2} as core::ops::function::FnOnce<(rustc_middle::ty::context::TyCtxt, rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>)>>::call_once
+  43: <rustc_query_system::query::plumbing::execute_job_incr<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>, rustc_middle::query::erase::Erased<[u8; 24]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt>::{closure#2}::{closure#2} as core::ops::function::FnOnce<((rustc_query_impl::plumbing::QueryCtxt, rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>, rustc_middle::query::erase::Erased<[u8; 24]>>, false, false, false>), rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>)>>::call_once
+  44: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>, rustc_middle::query::erase::Erased<[u8; 24]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  45: rustc_query_impl::query_impl::eval_to_allocation_raw::get_query_incr::__rust_end_short_backtrace
+  46: rustc_const_eval::const_eval::eval_queries::eval_to_const_value_raw_provider
+  47: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::eval_to_const_value_raw::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 24]>>
+  48: <rustc_query_impl::query_impl::eval_to_const_value_raw::dynamic_query::{closure#2} as core::ops::function::FnOnce<(rustc_middle::ty::context::TyCtxt, rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>)>>::call_once
+  49: <rustc_query_system::query::plumbing::execute_job_incr<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>, rustc_middle::query::erase::Erased<[u8; 24]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt>::{closure#2}::{closure#2} as core::ops::function::FnOnce<((rustc_query_impl::plumbing::QueryCtxt, rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>, rustc_middle::query::erase::Erased<[u8; 24]>>, false, false, false>), rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>)>>::call_once
+  50: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>, rustc_middle::query::erase::Erased<[u8; 24]>>, false, true, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  51: rustc_query_impl::query_impl::eval_to_const_value_raw::get_query_incr::__rust_end_short_backtrace
+  52: rustc_hir_analysis::check_crate
+  53: rustc_interface::passes::run_required_analyses
+  54: rustc_interface::passes::analysis
+  55: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::analysis::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 0]>>
+  56: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::SingleCache<rustc_middle::query::erase::Erased<[u8; 0]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  57: rustc_query_impl::query_impl::analysis::get_query_incr::__rust_end_short_backtrace
+  58: rustc_interface::passes::create_and_enter_global_ctxt::<core::option::Option<rustc_interface::queries::Linker>, rustc_driver_impl::run_compiler::{closure#0}::{closure#2}>::{closure#2}::{closure#0}
+  59: rustc_interface::interface::run_compiler::<(), rustc_driver_impl::run_compiler::{closure#0}>::{closure#1}
+  60: std::sys::backtrace::__rust_begin_short_backtrace::<rustc_interface::util::run_in_thread_with_globals<rustc_interface::util::run_in_thread_pool_with_globals<rustc_interface::interface::run_compiler<(), rustc_driver_impl::run_compiler::{closure#0}>::{closure#1}, ()>::{closure#0}, ()>::{closure#0}::{closure#0}, ()>
+  61: <<std::thread::Builder>::spawn_unchecked_<rustc_interface::util::run_in_thread_with_globals<rustc_interface::util::run_in_thread_pool_with_globals<rustc_interface::interface::run_compiler<(), rustc_driver_impl::run_compiler::{closure#0}>::{closure#1}, ()>::{closure#0}, ()>::{closure#0}::{closure#0}, ()>::{closure#1} as core::ops::function::FnOnce<()>>::call_once::{shim:vtable#0}
+  62: std::sys::pal::unix::thread::Thread::new::thread_start
+  63: start_thread
+             at ./nptl/pthread_create.c:442:8
+  64: __GI___clone3
+             at ./misc/../sysdeps/unix/sysv/linux/x86_64/clone3.S:81:0
+
+delayed bug: TyKind::Error constructed but no error reported
+   0: <rustc_errors::DiagCtxtInner>::emit_diagnostic
+   1: <rustc_errors::DiagCtxtHandle>::emit_diagnostic
+   2: <rustc_span::ErrorGuaranteed as rustc_errors::diagnostic::EmissionGuarantee>::emit_producing_guarantee
+   3: <rustc_errors::DiagCtxtHandle>::span_delayed_bug::<rustc_span::span_encoding::Span, &str>
+   4: <rustc_middle::ty::Ty>::new_misc_error
+   5: rustc_trait_selection::traits::project::opt_normalize_projection_term
+   6: <rustc_trait_selection::traits::normalize::AssocTypeNormalizer as rustc_type_ir::fold::TypeFolder<rustc_middle::ty::context::TyCtxt>>::fold_ty
+   7: <&rustc_middle::ty::list::RawList<(), rustc_middle::ty::generic_args::GenericArg> as rustc_type_ir::fold::TypeFoldable<rustc_middle::ty::context::TyCtxt>>::try_fold_with::<rustc_trait_selection::traits::normalize::AssocTypeNormalizer>
+   8: rustc_trait_selection::traits::normalize::normalize_with_depth_to::<rustc_middle::ty::predicate::Predicate>
+   9: <rustc_trait_selection::traits::fulfill::FulfillProcessor as rustc_data_structures::obligation_forest::ObligationProcessor>::process_obligation
+  10: <rustc_data_structures::obligation_forest::ObligationForest<rustc_trait_selection::traits::fulfill::PendingPredicateObligation>>::process_obligations::<rustc_trait_selection::traits::fulfill::FulfillProcessor>
+  11: <rustc_trait_selection::traits::fulfill::FulfillmentContext<rustc_infer::traits::engine::ScrubbedTraitError> as rustc_infer::traits::engine::TraitEngine<rustc_infer::traits::engine::ScrubbedTraitError>>::select_all_or_error
+  12: <rustc_const_eval::check_consts::qualifs::NeedsNonConstDrop as rustc_const_eval::check_consts::qualifs::Qualif>::in_any_value_of_ty
+  13: rustc_const_eval::check_consts::qualifs::in_any_value_of_ty
+  14: rustc_mir_transform::mir_const_qualif
+  15: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::mir_const_qualif::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 4]>>
+  16: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefIdCache<rustc_middle::query::erase::Erased<[u8; 4]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  17: rustc_query_impl::query_impl::mir_const_qualif::get_query_incr::__rust_end_short_backtrace
+  18: rustc_mir_transform::mir_promoted
+  19: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::mir_promoted::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 16]>>
+  20: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_data_structures::vec_cache::VecCache<rustc_span::def_id::LocalDefId, rustc_middle::query::erase::Erased<[u8; 16]>, rustc_query_system::dep_graph::graph::DepNodeIndex>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  21: rustc_query_impl::query_impl::mir_promoted::get_query_incr::__rust_end_short_backtrace
+  22: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::mir_borrowck::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 8]>>
+  23: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_data_structures::vec_cache::VecCache<rustc_span::def_id::LocalDefId, rustc_middle::query::erase::Erased<[u8; 8]>, rustc_query_system::dep_graph::graph::DepNodeIndex>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  24: rustc_query_impl::query_impl::mir_borrowck::get_query_incr::__rust_end_short_backtrace
+  25: rustc_mir_transform::mir_drops_elaborated_and_const_checked
+  26: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::mir_drops_elaborated_and_const_checked::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 8]>>
+  27: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_data_structures::vec_cache::VecCache<rustc_span::def_id::LocalDefId, rustc_middle::query::erase::Erased<[u8; 8]>, rustc_query_system::dep_graph::graph::DepNodeIndex>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  28: rustc_query_impl::query_impl::mir_drops_elaborated_and_const_checked::get_query_incr::__rust_end_short_backtrace
+  29: rustc_mir_transform::mir_for_ctfe
+  30: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::mir_for_ctfe::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 8]>>
+  31: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefIdCache<rustc_middle::query::erase::Erased<[u8; 8]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  32: rustc_query_impl::query_impl::mir_for_ctfe::get_query_incr::__rust_end_short_backtrace
+  33: <rustc_const_eval::interpret::eval_context::InterpCx<rustc_const_eval::const_eval::machine::CompileTimeMachine>>::load_mir
+  34: rustc_const_eval::const_eval::eval_queries::eval_to_allocation_raw_provider
+  35: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::eval_to_allocation_raw::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 24]>>
+  36: <rustc_query_impl::query_impl::eval_to_allocation_raw::dynamic_query::{closure#2} as core::ops::function::FnOnce<(rustc_middle::ty::context::TyCtxt, rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>)>>::call_once
+  37: <rustc_query_system::query::plumbing::execute_job_incr<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>, rustc_middle::query::erase::Erased<[u8; 24]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt>::{closure#2}::{closure#2} as core::ops::function::FnOnce<((rustc_query_impl::plumbing::QueryCtxt, rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>, rustc_middle::query::erase::Erased<[u8; 24]>>, false, false, false>), rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>)>>::call_once
+  38: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>, rustc_middle::query::erase::Erased<[u8; 24]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  39: rustc_query_impl::query_impl::eval_to_allocation_raw::get_query_incr::__rust_end_short_backtrace
+  40: rustc_const_eval::const_eval::eval_queries::eval_to_const_value_raw_provider
+  41: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::eval_to_const_value_raw::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 24]>>
+  42: <rustc_query_impl::query_impl::eval_to_const_value_raw::dynamic_query::{closure#2} as core::ops::function::FnOnce<(rustc_middle::ty::context::TyCtxt, rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>)>>::call_once
+  43: <rustc_query_system::query::plumbing::execute_job_incr<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>, rustc_middle::query::erase::Erased<[u8; 24]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt>::{closure#2}::{closure#2} as core::ops::function::FnOnce<((rustc_query_impl::plumbing::QueryCtxt, rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>, rustc_middle::query::erase::Erased<[u8; 24]>>, false, false, false>), rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>)>>::call_once
+  44: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>, rustc_middle::query::erase::Erased<[u8; 24]>>, false, true, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  45: rustc_query_impl::query_impl::eval_to_const_value_raw::get_query_incr::__rust_end_short_backtrace
+  46: rustc_hir_analysis::check_crate
+  47: rustc_interface::passes::run_required_analyses
+  48: rustc_interface::passes::analysis
+  49: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::analysis::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 0]>>
+  50: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::SingleCache<rustc_middle::query::erase::Erased<[u8; 0]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  51: rustc_query_impl::query_impl::analysis::get_query_incr::__rust_end_short_backtrace
+  52: rustc_interface::passes::create_and_enter_global_ctxt::<core::option::Option<rustc_interface::queries::Linker>, rustc_driver_impl::run_compiler::{closure#0}::{closure#2}>::{closure#2}::{closure#0}
+  53: rustc_interface::interface::run_compiler::<(), rustc_driver_impl::run_compiler::{closure#0}>::{closure#1}
+  54: std::sys::backtrace::__rust_begin_short_backtrace::<rustc_interface::util::run_in_thread_with_globals<rustc_interface::util::run_in_thread_pool_with_globals<rustc_interface::interface::run_compiler<(), rustc_driver_impl::run_compiler::{closure#0}>::{closure#1}, ()>::{closure#0}, ()>::{closure#0}::{closure#0}, ()>
+  55: <<std::thread::Builder>::spawn_unchecked_<rustc_interface::util::run_in_thread_with_globals<rustc_interface::util::run_in_thread_pool_with_globals<rustc_interface::interface::run_compiler<(), rustc_driver_impl::run_compiler::{closure#0}>::{closure#1}, ()>::{closure#0}, ()>::{closure#0}::{closure#0}, ()>::{closure#1} as core::ops::function::FnOnce<()>>::call_once::{shim:vtable#0}
+  56: std::sys::pal::unix::thread::Thread::new::thread_start
+  57: start_thread
+             at ./nptl/pthread_create.c:442:8
+  58: __GI___clone3
+             at ./misc/../sysdeps/unix/sysv/linux/x86_64/clone3.S:81:0
+
+delayed bug: TyKind::Error constructed but no error reported
+   0: <rustc_errors::DiagCtxtInner>::emit_diagnostic
+   1: <rustc_errors::DiagCtxtHandle>::emit_diagnostic
+   2: <rustc_span::ErrorGuaranteed as rustc_errors::diagnostic::EmissionGuarantee>::emit_producing_guarantee
+   3: <rustc_errors::DiagCtxtHandle>::span_delayed_bug::<rustc_span::span_encoding::Span, &str>
+   4: <rustc_middle::ty::Ty>::new_misc_error
+   5: rustc_trait_selection::traits::project::opt_normalize_projection_term
+   6: rustc_traits::normalize_projection_ty::normalize_canonicalized_projection_ty
+   7: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::normalize_canonicalized_projection_ty::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 8]>>
+   8: <rustc_query_impl::query_impl::normalize_canonicalized_projection_ty::dynamic_query::{closure#2} as core::ops::function::FnOnce<(rustc_middle::ty::context::TyCtxt, rustc_type_ir::canonical::CanonicalQueryInput<rustc_middle::ty::context::TyCtxt, rustc_middle::ty::ParamEnvAnd<rustc_type_ir::ty_kind::AliasTy<rustc_middle::ty::context::TyCtxt>>>)>>::call_once
+   9: <rustc_query_system::query::plumbing::execute_job_incr<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_type_ir::canonical::CanonicalQueryInput<rustc_middle::ty::context::TyCtxt, rustc_middle::ty::ParamEnvAnd<rustc_type_ir::ty_kind::AliasTy<rustc_middle::ty::context::TyCtxt>>>, rustc_middle::query::erase::Erased<[u8; 8]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt>::{closure#2}::{closure#2} as core::ops::function::FnOnce<((rustc_query_impl::plumbing::QueryCtxt, rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_type_ir::canonical::CanonicalQueryInput<rustc_middle::ty::context::TyCtxt, rustc_middle::ty::ParamEnvAnd<rustc_type_ir::ty_kind::AliasTy<rustc_middle::ty::context::TyCtxt>>>, rustc_middle::query::erase::Erased<[u8; 8]>>, false, false, false>), rustc_type_ir::canonical::CanonicalQueryInput<rustc_middle::ty::context::TyCtxt, rustc_middle::ty::ParamEnvAnd<rustc_type_ir::ty_kind::AliasTy<rustc_middle::ty::context::TyCtxt>>>)>>::call_once
+  10: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_type_ir::canonical::CanonicalQueryInput<rustc_middle::ty::context::TyCtxt, rustc_middle::ty::ParamEnvAnd<rustc_type_ir::ty_kind::AliasTy<rustc_middle::ty::context::TyCtxt>>>, rustc_middle::query::erase::Erased<[u8; 8]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  11: rustc_query_impl::query_impl::normalize_canonicalized_projection_ty::get_query_incr::__rust_end_short_backtrace
+  12: <rustc_trait_selection::traits::query::normalize::QueryNormalizer as rustc_type_ir::fold::FallibleTypeFolder<rustc_middle::ty::context::TyCtxt>>::try_fold_ty
+  13: <rustc_traits::normalize_erasing_regions::provide::{closure#0} as core::ops::function::FnOnce<(rustc_middle::ty::context::TyCtxt, rustc_middle::ty::PseudoCanonicalInput<rustc_middle::ty::generic_args::GenericArg>)>>::call_once
+  14: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::try_normalize_generic_arg_after_erasing_regions::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 8]>>
+  15: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_middle::ty::PseudoCanonicalInput<rustc_middle::ty::generic_args::GenericArg>, rustc_middle::query::erase::Erased<[u8; 8]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  16: rustc_query_impl::query_impl::try_normalize_generic_arg_after_erasing_regions::get_query_incr::__rust_end_short_backtrace
+  17: <rustc_middle::ty::normalize_erasing_regions::TryNormalizeAfterErasingRegionsFolder as rustc_type_ir::fold::FallibleTypeFolder<rustc_middle::ty::context::TyCtxt>>::try_fold_ty
+  18: <rustc_mir_transform::post_analysis_normalize::PostAnalysisNormalize as rustc_mir_transform::pass_manager::MirPass>::run_pass
+  19: rustc_mir_transform::run_analysis_to_runtime_passes
+  20: rustc_mir_transform::mir_drops_elaborated_and_const_checked
+  21: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::mir_drops_elaborated_and_const_checked::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 8]>>
+  22: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_data_structures::vec_cache::VecCache<rustc_span::def_id::LocalDefId, rustc_middle::query::erase::Erased<[u8; 8]>, rustc_query_system::dep_graph::graph::DepNodeIndex>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  23: rustc_query_impl::query_impl::mir_drops_elaborated_and_const_checked::get_query_incr::__rust_end_short_backtrace
+  24: rustc_mir_transform::mir_for_ctfe
+  25: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::mir_for_ctfe::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 8]>>
+  26: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefIdCache<rustc_middle::query::erase::Erased<[u8; 8]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  27: rustc_query_impl::query_impl::mir_for_ctfe::get_query_incr::__rust_end_short_backtrace
+  28: <rustc_const_eval::interpret::eval_context::InterpCx<rustc_const_eval::const_eval::machine::CompileTimeMachine>>::load_mir
+  29: rustc_const_eval::const_eval::eval_queries::eval_to_allocation_raw_provider
+  30: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::eval_to_allocation_raw::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 24]>>
+  31: <rustc_query_impl::query_impl::eval_to_allocation_raw::dynamic_query::{closure#2} as core::ops::function::FnOnce<(rustc_middle::ty::context::TyCtxt, rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>)>>::call_once
+  32: <rustc_query_system::query::plumbing::execute_job_incr<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>, rustc_middle::query::erase::Erased<[u8; 24]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt>::{closure#2}::{closure#2} as core::ops::function::FnOnce<((rustc_query_impl::plumbing::QueryCtxt, rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>, rustc_middle::query::erase::Erased<[u8; 24]>>, false, false, false>), rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>)>>::call_once
+  33: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>, rustc_middle::query::erase::Erased<[u8; 24]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  34: rustc_query_impl::query_impl::eval_to_allocation_raw::get_query_incr::__rust_end_short_backtrace
+  35: rustc_const_eval::const_eval::eval_queries::eval_to_const_value_raw_provider
+  36: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::eval_to_const_value_raw::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 24]>>
+  37: <rustc_query_impl::query_impl::eval_to_const_value_raw::dynamic_query::{closure#2} as core::ops::function::FnOnce<(rustc_middle::ty::context::TyCtxt, rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>)>>::call_once
+  38: <rustc_query_system::query::plumbing::execute_job_incr<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>, rustc_middle::query::erase::Erased<[u8; 24]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt>::{closure#2}::{closure#2} as core::ops::function::FnOnce<((rustc_query_impl::plumbing::QueryCtxt, rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>, rustc_middle::query::erase::Erased<[u8; 24]>>, false, false, false>), rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>)>>::call_once
+  39: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::DefaultCache<rustc_middle::ty::PseudoCanonicalInput<rustc_middle::mir::interpret::GlobalId>, rustc_middle::query::erase::Erased<[u8; 24]>>, false, true, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  40: rustc_query_impl::query_impl::eval_to_const_value_raw::get_query_incr::__rust_end_short_backtrace
+  41: rustc_hir_analysis::check_crate
+  42: rustc_interface::passes::run_required_analyses
+  43: rustc_interface::passes::analysis
+  44: rustc_query_impl::plumbing::__rust_begin_short_backtrace::<rustc_query_impl::query_impl::analysis::dynamic_query::{closure#2}::{closure#0}, rustc_middle::query::erase::Erased<[u8; 0]>>
+  45: rustc_query_system::query::plumbing::try_execute_query::<rustc_query_impl::DynamicConfig<rustc_query_system::query::caches::SingleCache<rustc_middle::query::erase::Erased<[u8; 0]>>, false, false, false>, rustc_query_impl::plumbing::QueryCtxt, true>
+  46: rustc_query_impl::query_impl::analysis::get_query_incr::__rust_end_short_backtrace
+  47: rustc_interface::passes::create_and_enter_global_ctxt::<core::option::Option<rustc_interface::queries::Linker>, rustc_driver_impl::run_compiler::{closure#0}::{closure#2}>::{closure#2}::{closure#0}
+  48: rustc_interface::interface::run_compiler::<(), rustc_driver_impl::run_compiler::{closure#0}>::{closure#1}
+  49: std::sys::backtrace::__rust_begin_short_backtrace::<rustc_interface::util::run_in_thread_with_globals<rustc_interface::util::run_in_thread_pool_with_globals<rustc_interface::interface::run_compiler<(), rustc_driver_impl::run_compiler::{closure#0}>::{closure#1}, ()>::{closure#0}, ()>::{closure#0}::{closure#0}, ()>
+  50: <<std::thread::Builder>::spawn_unchecked_<rustc_interface::util::run_in_thread_with_globals<rustc_interface::util::run_in_thread_pool_with_globals<rustc_interface::interface::run_compiler<(), rustc_driver_impl::run_compiler::{closure#0}>::{closure#1}, ()>::{closure#0}, ()>::{closure#0}::{closure#0}, ()>::{closure#1} as core::ops::function::FnOnce<()>>::call_once::{shim:vtable#0}
+  51: std::sys::pal::unix::thread::Thread::new::thread_start
+  52: start_thread
+             at ./nptl/pthread_create.c:442:8
+  53: __GI___clone3
+             at ./misc/../sysdeps/unix/sysv/linux/x86_64/clone3.S:81:0
+
+
+
+rustc version: 1.87.0-nightly (43f0014ef 2025-03-25)
+platform: x86_64-unknown-linux-gnu
