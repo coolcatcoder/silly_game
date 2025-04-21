@@ -845,6 +845,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "bevy_registration"
+version = "0.3.0"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
 name = "bevy_render"
 version = "0.15.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3515,6 +3524,7 @@ name = "silly_game"
 version = "0.1.0"
 dependencies = [
  "bevy",
+ "bevy_registration",
  "leafwing-input-manager",
 ]
 

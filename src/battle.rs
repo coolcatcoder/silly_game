@@ -1,39 +1,28 @@
 use bevy::{math::U8Vec2, prelude::*};
-use grid::{Grid, GridTranslation};
+use grid::Grid;
 use opponent::{OpponentGrid, OpponentGridSpeed};
-use selector::{Selector, SelectorMaterial};
+use selector::Selector;
 
+use crate::create_grid;
+
+mod body;
 mod grid;
+mod on_grid;
 mod opponent;
 mod selector;
 
 pub fn plugin(app: &mut App) {
     grid::plugin(app);
+    on_grid::plugin(app);
     selector::plugin(app);
     opponent::plugin(app);
-    app.add_systems(Startup, cube_mesh)
-        .add_systems(Update, experiment);
+    body::plugin(app);
+    app.add_systems(PreStartup, cube_mesh)
+        .add_systems(Startup, experiment);
 }
 
 /// Temp battle experiment starter.
-fn experiment(
-    mut commands: Commands,
-    cube_mesh: Option<Res<CubeMesh>>,
-    selector_material: Option<Res<SelectorMaterial>>,
-    mut finished: Local<bool>,
-) {
-    if *finished {
-        return;
-    }
-
-    let Some(cube_mesh) = cube_mesh else {
-        return;
-    };
-    let Some(selector_material) = selector_material else {
-        return;
-    };
-    *finished = true;
-
+fn experiment(mut commands: Commands) {
     commands.spawn((
         Transform {
             translation: Vec3::new(-10., 0., -10.),
@@ -49,16 +38,15 @@ fn experiment(
     ));
 
     // player
-    let player_grid = commands.spawn(Grid::new(U8Vec2::splat(5))).id();
-    commands.spawn((
-        Selector::default(),
-        GridTranslation {
-            grid: player_grid,
-            translation: U8Vec2::ZERO,
-        },
-        Mesh3d(cube_mesh.0.clone()),
-        MeshMaterial3d(selector_material.0.clone()),
-    ));
+    let s = Selector::on_grid();
+    create_grid!(
+        commands
+        [s| | | | ]
+        [ |s| | | ]
+        [ | |s| | ]
+        [ | | |s| ]
+        [ | | | |s]
+    );
 
     // opponent
     commands.spawn((
@@ -78,6 +66,8 @@ struct FromBattle;
 #[derive(Resource)]
 struct CubeMesh(Handle<Mesh>);
 
-fn cube_mesh(asset_server: Res<AssetServer>, mut commands: Commands) {
-    commands.insert_resource(CubeMesh(asset_server.add(Cuboid::default().into())));
+fn cube_mesh(world: &mut World) {
+    let asset_server = world.resource::<AssetServer>();
+    let mesh = CubeMesh(asset_server.add(Cuboid::default().into()));
+    world.insert_resource(mesh);
 }
