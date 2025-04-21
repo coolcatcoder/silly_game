@@ -15,6 +15,7 @@ fn selector_material(world: &mut World) {
     let material = SelectorMaterial(asset_server.add(StandardMaterial {
         base_color_texture: Some(asset_server.load("selector.png")),
         unlit: true,
+        // TODO: Work out layering, so this is always on top.
         alpha_mode: AlphaMode::Blend,
         ..default()
     }));
@@ -39,7 +40,10 @@ impl Selector {
             selector.queue(|mut selector: EntityWorldMut| {
                 let cube_mesh = selector.world().resource::<CubeMesh>().0.clone();
                 let selector_material = selector.world().resource::<SelectorMaterial>().0.clone();
-                selector.insert((Mesh3d(cube_mesh), MeshMaterial3d(selector_material)));
+                selector.insert((
+                    Mesh3d(cube_mesh),
+                    MeshMaterial3d(selector_material),
+                ));
             });
             selector.id()
         }
@@ -78,7 +82,7 @@ fn movement(
                 (&Action::Right, (0, -1)),
             ] {
                 if actions.just_pressed(action)
-                    || (selector.seconds_since_last_move > 0.1 && actions.pressed(action))
+                    || (selector.seconds_since_last_move > 0.15 && actions.pressed(action))
                 {
                     selector.seconds_since_last_move = 0.;
                     match direction {
@@ -108,7 +112,6 @@ fn movement(
             } else {
                 translation[direction.0 as usize] = new_translation;
                 on_grid.set_translation(&mut grid, entity, translation);
-                info!("?");
             }
         });
 }

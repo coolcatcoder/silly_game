@@ -1,4 +1,5 @@
 use bevy::{math::U8Vec2, prelude::*};
+use body::Body;
 use grid::Grid;
 use opponent::{OpponentGrid, OpponentGridSpeed};
 use selector::Selector;
@@ -39,13 +40,14 @@ fn experiment(mut commands: Commands) {
 
     // player
     let s = Selector::on_grid();
+    let b = Body::on_grid();
     create_grid!(
         commands
         [s| | | | ]
-        [ |s| | | ]
-        [ | |s| | ]
-        [ | | |s| ]
-        [ | | | |s]
+        [ |b|b| | ]
+        [ |b|b|b| ]
+        [ | |b|b| ]
+        [ | | | | ]
     );
 
     // opponent
