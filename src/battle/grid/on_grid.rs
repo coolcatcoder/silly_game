@@ -1,6 +1,6 @@
 use bevy::{math::U8Vec2, prelude::*};
 
-use super::grid::Grid;
+use super::Grid;
 
 pub fn plugin(app: &mut App) {
     app.add_systems(Update, transforms);
@@ -29,6 +29,10 @@ impl OnGrid {
         self.grid
     }
 
+    pub fn index(&self) -> usize {
+        self.index as usize
+    }
+
     pub fn translation(&self) -> U8Vec2 {
         self.translation
     }
@@ -39,7 +43,10 @@ impl OnGrid {
             return;
         };
         let Some(in_cell_index) = current_cell.iter().position(|e| *e == entity) else {
-            error!("Entity not in cell.");
+            error!(
+                "Entity not in cell.\nindex:{}\nentity:{:?}\n{:?}",
+                self.index, entity, current_cell
+            );
             return;
         };
         current_cell.swap_remove(in_cell_index);

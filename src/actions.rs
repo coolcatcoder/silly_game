@@ -13,6 +13,7 @@ pub enum Action {
     Down,
     Left,
     Right,
+    Pull,
 }
 
 fn input_map() -> InputMap<Action> {
@@ -21,6 +22,7 @@ fn input_map() -> InputMap<Action> {
         (Action::Down, KeyCode::KeyS),
         (Action::Left, KeyCode::KeyA),
         (Action::Right, KeyCode::KeyD),
+        (Action::Pull, KeyCode::KeyF),
     ])
 }
 

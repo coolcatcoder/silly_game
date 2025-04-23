@@ -8,13 +8,11 @@ use crate::create_grid;
 
 mod body;
 mod grid;
-mod on_grid;
 mod opponent;
 mod selector;
 
 pub fn plugin(app: &mut App) {
     grid::plugin(app);
-    on_grid::plugin(app);
     selector::plugin(app);
     opponent::plugin(app);
     body::plugin(app);

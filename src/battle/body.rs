@@ -1,13 +1,16 @@
-use super::CubeMesh;
+use super::{
+    CubeMesh,
+    selector::{OnlyOneInCell, Pullable},
+};
 use bevy::prelude::*;
 
 pub fn plugin(app: &mut App) {
     app.add_systems(PreStartup, material);
-    //.add_systems(Update, collide);
 }
 
 /// A player's body block.
 #[derive(Component, Default)]
+#[require(Pullable)]
 pub struct Body;
 
 impl Body {
@@ -17,7 +20,11 @@ impl Body {
             entity.queue(|mut entity: EntityWorldMut| {
                 let cube_mesh = entity.world().resource::<CubeMesh>().0.clone();
                 let selector_material = entity.world().resource::<Material>().0.clone();
-                entity.insert((Mesh3d(cube_mesh), MeshMaterial3d(selector_material)));
+                entity.insert((
+                    Mesh3d(cube_mesh),
+                    MeshMaterial3d(selector_material),
+                    OnlyOneInCell(std::any::TypeId::of::<Body>()),
+                ));
             });
             entity.id()
         }

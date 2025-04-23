@@ -1,15 +1,18 @@
 use crate::battle::FromBattle;
 use bevy::{math::U8Vec2, prelude::*};
 
+pub mod on_grid;
+
 pub fn plugin(app: &mut App) {
+    on_grid::plugin(app);
     app.add_systems(Update, debug);
 }
 
 #[derive(Component)]
 #[require(Transform, FromBattle)]
 pub struct Grid {
-    pub cells: Box<[Vec<Entity>]>,
-    pub size: U8Vec2,
+    cells: Box<[Vec<Entity>]>,
+    size: U8Vec2,
 }
 
 impl Grid {
@@ -20,16 +23,21 @@ impl Grid {
         }
     }
 
-    /// Adds a cell at the specified translation.
-    /// This will error if the translation is invalid.
-    #[deprecated(note = "Needs checking.")]
-    pub fn set(mut self, translation: U8Vec2, cell: Entity) -> Self {
-        let Some(index) = self.translation_to_index(translation) else {
-            error!("Invalid translation!");
-            return self;
-        };
-        self.cells[index as usize].push(cell);
-        self
+    /// Creates a new grid with the cells set.
+    /// Will error if cells' length does not match size.
+    pub fn new_with_cells(cells: Box<[Vec<Entity>]>, size: U8Vec2) -> Self {
+        if cells.len() as u16 != size.x as u16 * size.y as u16 {
+            error!("Size does not match length!");
+        }
+        Self { cells, size }
+    }
+
+    pub fn size(&self) -> U8Vec2 {
+        self.size
+    }
+
+    pub fn cells(&self) -> &[Vec<Entity>] {
+        &self.cells
     }
 
     /// Converts the grid index to the grid translation.
@@ -116,17 +124,14 @@ macro_rules! create_grid {
             ),*];
 
             let size = U8Vec2::new(rows[0].len() as u8, rows.len() as u8);
-            let grid = Grid {
-                cells: rows.into_iter().flatten().collect(),
-                size,
-            };
+            let grid = Grid::new_with_cells(rows.into_iter().flatten().collect(), size);
             let grid_entity = $commands.spawn_empty().id();
 
-            grid.cells.iter().enumerate().for_each(|(index, cell)| {
+            grid.cells().iter().enumerate().for_each(|(index, cell)| {
                 let translation = grid.index_to_translation(index).unwrap();
 
                 cell.iter().for_each(|entity| {
-                    $commands.entity(*entity).insert(crate::battle::on_grid::OnGrid::new(grid_entity, index, translation));
+                    $commands.entity(*entity).insert(crate::battle::grid::on_grid::OnGrid::new(grid_entity, index, translation));
                 });
             });
 
